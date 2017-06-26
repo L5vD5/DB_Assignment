@@ -1,0 +1,15 @@
+html
+  head
+    title 로그인
+  body
+    h1 아이디와 비밀번호를 입력하세요
+
+    form(action='/login_auth' method='post')
+      p
+        h3 아이디 :
+        input(name = 'id', id = 'id', type='text')
+      p
+        h3 비밀번호 :
+        input(name = 'password', id='password', type='password')
+      p
+        input(type='submit')

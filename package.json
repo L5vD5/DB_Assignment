@@ -1,0 +1,32 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "l5vd5's nodejs tutorial",
+  "main": "hello.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jade": "^1.11.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "L5vD5",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/L5vD5/nodejs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "Tutorial",
+    "with",
+    "L5vD5"
+  ],
+  "bugs": {
+    "url": "https://github.com/L5vD5/nodejs/issues"
+  },
+  "homepage": "https://github.com/L5vD5/nodejs#readme"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "nodejs",
+  "description": "nodejs is very exciting",
+  "launch_path": "220.86.217.237:2000/",
+  "icons": {
+    "128": "/public/images.png.png"
+  },
+  "developer": {
+    "name": "L5vD5",
+    "url": "kweb.korea.ac.kr"
+  },
+  "default_locale": "ko"
+}
