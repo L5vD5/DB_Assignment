@@ -1,12 +1,14 @@
 {
-  "name": "nodejs",
+  "name": "db",
   "version": "1.0.0",
   "description": "l5vd5's nodejs tutorial",
-  "main": "hello.js",
+  "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "express-mysql-session": "^1.2.1",
     "jade": "^1.11.0",
+    "mysql": "^2.13.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {},

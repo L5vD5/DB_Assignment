@@ -1,15 +1,22 @@
 html
   head
     title 로그인
+    script.
+      function signin()
+      {
+        document.location.href="/signin";
+      }
   body
     h1 아이디와 비밀번호를 입력하세요
 
-    form(action='/login_auth' method='post')
+    form(action='/login' method='post')
       p
         h3 아이디 :
-        input(name = 'id', id = 'id', type='text')
+        input(name = 'username', id = 'username', type='text')
       p
         h3 비밀번호 :
         input(name = 'password', id='password', type='password')
       p
         input(type='submit')
+
+    input(type='button' value='회원가입' onclick='signin()')

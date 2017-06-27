@@ -1,0 +1,23 @@
+html
+  head
+    title 회원가입
+    script.
+
+  body
+    h1 환영합니다
+
+    form(action='/signin_auth' method='post')
+      p
+        h3 아이디 :
+        input(name = 'id', id = 'id', type='text')
+      p
+        h3 비밀번호 :
+        input(name = 'password', id='password', type='password')
+      p
+        h3 비밀번호 확인 :
+        input(name = 'password_conf', id='password_conf', type='password')
+      p
+        h3 이름 :
+        input(name = 'name', id='name', type='text')
+      p
+        input(type='submit')
