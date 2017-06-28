@@ -1,0 +1,33 @@
+html
+  head
+    title 프로젝트 목록
+  body
+    div
+      h1 #{id}님이 만든 프로젝트
+      ul
+        -for(var i=0 ; i < myproject.length; i++)
+          li #{myproject[i].name}(후원금 : #{myproject[i].Money})
+            |&nbsp;&nbsp;&nbsp;
+            a(href='/sponse/project/#{myproject[i].name}')
+              |후원하기
+            |&nbsp;&nbsp;&nbsp;
+            a(href='/money/history/#{myproject[i].name}')
+              |후원 내역
+
+    div
+      h1 모든 프로젝트
+      ul
+        -for(var i=0 ; i < projects.length; i++)
+          li #{projects[i].name}(후원금 : #{projects[i].Money})&nbsp;&nbsp;&nbsp;
+            //a(href='/team/login/#{projects[i].name}')
+            //  |접속
+            |&nbsp;&nbsp;&nbsp;
+            a(href='/sponse/project/#{projects[i].name}')
+              |후원하기
+            |&nbsp;&nbsp;&nbsp;
+
+
+    div
+      a(href='/project_make') 프로젝트 만들기
+      br
+      a(href='/home') 홈으로 돌아가기

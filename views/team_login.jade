@@ -1,0 +1,11 @@
+html
+  head
+    title 팀 로그인
+  body
+    h1 #{id}님이 #{team_name}으로 팀 로그인
+    form(action='/team_login', method='post')
+      input(type='hidden', name='id', value='#{id}')
+      input(type='hidden', name='team_name', value='#{team_name}')
+      input(type='submit', value='팀 로그인')
+      br
+      a(href='/home') 홈으로 돌아가기

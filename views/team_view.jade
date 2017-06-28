@@ -5,24 +5,26 @@ html
     div
       h1 #{id}님이 속하신 Team
       ul
-        -for(var i=0 ; i < teams.length; i++)
-          li #{teams[i].name}&nbsp;&nbsp;&nbsp;
-            a(href='/team/login/#{teams[i].name}')
-              |접속
+        -for(var i=0 ; i < myteam.length; i++)
+          li #{myteam[i].name}(후원금 : #{myteam[i].Money})
             |&nbsp;&nbsp;&nbsp;
-            a(href='/sponse/#{teams[i].name}')
+            a(href='/sponse/#{myteam[i].name}')
               |후원하기
-            |&nbsp;&nbsp;&nbsp;
 
 
     div
       h1 모든 Team
       ul
         -for(var i=0 ; i < teams.length; i++)
-          li= teams[i].name
-            |&nbsp;&nbsp;&nbsp;
+          li #{teams[i].name}(후원금 : #{teams[i].Money})&nbsp;&nbsp;&nbsp;
+            //a(href='/team/login/#{teams[i].name}')
+            //  |접속
+            //|&nbsp;&nbsp;&nbsp;
             a(href='/sponse/#{teams[i].name}')
               |후원하기
+            |&nbsp;&nbsp;&nbsp;
+
+
 
     div
       a(href='/team_make') 팀 만들기

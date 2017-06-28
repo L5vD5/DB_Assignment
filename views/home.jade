@@ -22,7 +22,7 @@ html
         a(href='/write')
           |글쓰기
     div(id=container)
-      table(style={width : 300})
+      table(style={width : 700})
         tr
           td 번호
           td 글 내용
@@ -34,4 +34,6 @@ html
             td=posts[i].post_content
             td=posts[i].name
             td
-              a(href='/delete/'+posts[i].post_no) x
+              -var a = id
+              if posts[i].name == a
+                a(href='/delete/'+posts[i].post_no) x

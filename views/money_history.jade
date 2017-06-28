@@ -1,0 +1,22 @@
+html
+  head
+    title Home
+    script.
+  body
+    h1 #{id}의 후원 내역
+
+    div(id=container)
+      table(style={width : 1000})
+        tr
+          td 번호
+          td 금액
+          td 날짜
+          td 내용
+        -for(var i=0 ; i < history.length; i++)
+          tr
+            td=history[i].history_no
+            td=history[i].amount
+            td=history[i].date
+            td=history[i].content
+    br
+    a(href='/view/project') 뒤로가기
