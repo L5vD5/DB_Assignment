@@ -6,11 +6,25 @@ html
       h1 #{id}님이 속하신 Team
       ul
         -for(var i=0 ; i < teams.length; i++)
-          li= teams[i].name
+          li #{teams[i].name}&nbsp;&nbsp;&nbsp;
+            a(href='/team/login/#{teams[i].name}')
+              |접속
+            |&nbsp;&nbsp;&nbsp;
+            a(href='/sponse/#{teams[i].name}')
+              |후원하기
+            |&nbsp;&nbsp;&nbsp;
+
+
     div
-      h1 추천 Team
+      h1 모든 Team
       ul
         -for(var i=0 ; i < teams.length; i++)
           li= teams[i].name
+            |&nbsp;&nbsp;&nbsp;
+            a(href='/sponse/#{teams[i].name}')
+              |후원하기
+
     div
       a(href='/team_make') 팀 만들기
+      br
+      a(href='/home') 홈으로 돌아가기

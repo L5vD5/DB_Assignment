@@ -14,9 +14,15 @@ app.use(cookieParser());
 app.set('view engine', 'jade');
 app.set('views', './views');
 
-var passport = require('passport')
+//user 로그인 세션
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;//Mysql 전략
 
+//team 서비스 세션
+const passport2 = require('passport');
+const LocalStrategy = require('passport-local').Strategy;//Mysql 전략
+
+//project 서비스 세션
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -58,7 +64,7 @@ app.get('/', function(req,res){
 login으로 접속
 **/
 app.get('/login', function(req,res){
-	if(req.user)
+	if(req.user)//로그이 돼있으면 바로 /home으로 감
   {
     res.redirect('/home');
   }
@@ -158,7 +164,7 @@ app.get('/home', function(req,res){
   connection.query('SELECT * FROM post', function(err, rows, fields){
     if(!err)
     {
-      res.render('home', {id : req.user.id, posts : rows});
+      res.render('home', {id : req.user.id, money : req.user.money, posts : rows});
     }
     else {
       console.log('Error while performing Query.', err);
@@ -247,8 +253,29 @@ app.get('/recharge', function(req,res){
 
 app.post('/recharge', function(req,res){
   connection.query('UPDATE user set money="'+(req.user.money+1000)+'" where id="'+req.user.id+'"', function(err, rows, fields){
-
+    if(!err)
+    {
+      console.log("recharge Success");
+    }
+    else
+      console.log('Error while performing Query.', err);
   })
   res.redirect('/home');
+})
+/**
+sponse에서 후원
+**/
+app.get('/sponse/:team_name', function(req,res)
+{
+  connection.query('UPDATE user set money=money-1000" where id="'+req.user.id+'";'
+                    +'UPDATE team set Money= Money+1000 where name="'+req.params.team_name+'";', function(err,rows,fields){
+    if(!err)
+    {
+      console.log("sponse Success");
+    }
+    else
+      console.log('Error while performing Query.', err);
+  })
+  res.redirect('/view/team');
 })
 }

@@ -4,6 +4,7 @@ html
     script.
   body
     h1 #{id}로 사용중
+    h3 가진 금액 : #{money}
     ul
       li
         a(href='/logout')
@@ -20,7 +21,6 @@ html
       li
         a(href='/write')
           |글쓰기
-
     div(id=container)
       table(style={width : 300})
         tr
