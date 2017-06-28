@@ -1,0 +1,16 @@
+html
+  head
+    title 팀 목록
+  body
+    div
+      h1 #{id}님이 속하신 Team
+      ul
+        -for(var i=0 ; i < teams.length; i++)
+          li= teams[i].name
+    div
+      h1 추천 Team
+      ul
+        -for(var i=0 ; i < teams.length; i++)
+          li= teams[i].name
+    div
+      a(href='/team_make') 팀 만들기

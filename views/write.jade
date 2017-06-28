@@ -1,0 +1,9 @@
+html
+  head
+    title 글쓰기
+  body
+    h1 #{id}님, 자유롭게 쓰세요
+    form(action='/write', method='post')
+      input(type='text', name='content', style={height:400, width:580})
+      br
+      input(type='submit')

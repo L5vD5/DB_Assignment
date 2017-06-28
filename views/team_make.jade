@@ -1,0 +1,11 @@
+html
+  head
+    title 팀 만들기
+  body
+    h1 팀 만들기
+    form(action='/team_make', method='post')
+      p
+        |팀 이름 : 
+        input(type='text', name='name')
+      br
+      input(type='submit')

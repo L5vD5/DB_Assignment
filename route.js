@@ -24,7 +24,8 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : '123456',
   port     : '3306',
-  database : 'db'
+  database : 'db',
+  multipleStatements : true
 });
 
 app.use(session({//세션
@@ -42,7 +43,7 @@ app.use(session({//세션
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-
+connection.connect();
 /*********
 /으로 접속
 *********/
@@ -129,7 +130,6 @@ signin_auth에서 계정 생성 sql 실행
 
 
 app.post('/signin_auth', function(req,res){
-  connection.connect();
   if(req.body.password == req.body.password_conf)//비밀번호가 일치한 경우
   {
     connection.query('INSERT INTO user (id, password, name) VALUES ("'+req.body.id+'", "'+req.body.password+'", "'+req.body.name+'")', function(err, rows, fields) {
@@ -147,15 +147,108 @@ app.post('/signin_auth', function(req,res){
   else {//비밀번호가 일치하지 않은 경우
     res.redirect('/signin');
   }
-  connection.end();
   res.end();
 });
 
 /**
 home에서 서비스 시작
 **/
+
 app.get('/home', function(req,res){
-  res.render('home',{id : req.user.id});
-  res.end();
+  connection.query('SELECT * FROM post', function(err, rows, fields){
+    if(!err)
+    {
+      res.render('home', {id : req.user.id, posts : rows});
+    }
+    else {
+      console.log('Error while performing Query.', err);
+    }
+  });
+  //res.end();
 });
+
+/**
+write에서 글 쓰기
+**/
+
+app.get('/write', function(req,res){
+  res.render('write', {id : req.user.id});
+});
+app.post('/write', function(req,res){
+  connection.query('INSERT INTO post (post_content, name) VALUES ("'+req.body.content+'", "'+req.user.id+'")', function(err, rows, fields) {
+    if (!err)
+    {
+      console.log(rows.insertId);
+    }
+    else
+      console.log('Error while performing Query.', err);
+  });
+  res.redirect('/home');
+});
+
+/**
+Delete에서 글 지우기
+**/
+app.get('/delete/:num', function(req,res)
+{
+  connection.query('DELETE FROM post where post_no="'+req.params.num+'"',function(err, rows, fields){
+    if(!err)
+    {
+      console.log("DELETE SUCCESS");
+    }
+    else {
+      console.log('Error while performing Query.', err);
+    }
+  });
+  res.redirect('/home');
+});
+
+/**
+view에서 team과 project 보이기
+**/
+app.get('/view/team', function(req, res)
+{
+  connection.query('SELECT * FROM team;'+'SELECT * FROM team WHERE id = "'+req.user.id+'";', function(err, rows, fields){
+
+    if(!err)
+    {
+      res.render('team_view', {id :req.user.id, teams : rows[0], myteam : rows[1]});
+    }
+    else {
+      console.log('Error while performing Query.', err);
+    }
+  });
+
+})
+
+app.get('/team_make', function(req,res)
+{
+  res.render('team_make');
+})
+
+app.post('/team_make', function(req,res)
+{
+  connection.query('INSERT INTO team (name, id, user_no) VALUES ("'+req.body.name+'", "'+req.user.id+'", "'+req.user.user_no+'")', function(err, rows, fields) {
+    if (!err)
+    {
+      console.log(rows.insertId);
+    }
+    else
+      console.log('Error while performing Query.', err);
+  });
+  res.redirect('/view/team');
+})
+/**
+recharge에서 충전
+**/
+app.get('/recharge', function(req,res){
+  res.render('recharge')
+})
+
+app.post('/recharge', function(req,res){
+  connection.query('UPDATE user set money="'+(req.user.money+1000)+'" where id="'+req.user.id+'"', function(err, rows, fields){
+
+  })
+  res.redirect('/home');
+})
 }

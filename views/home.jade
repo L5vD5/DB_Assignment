@@ -6,12 +6,32 @@ html
     h1 #{id}로 사용중
     ul
       li
-        a(href='/logout')로그아웃
+        a(href='/logout')
+          |로그아웃
       li
-        a(href='/view/user')팀 목록 보기
+        a(href='/view/team')
+          |팀 목록 보기
       li
-        a(href='/view/team')프로젝트 목록 보기
+        a(href='/view/project')
+          |프로젝트 목록 보기
       li
-        a(href='/recharge')충전하기
+        a(href='/recharge')
+          |충전하기
       li
-        a(href='/write')글쓰기
+        a(href='/write')
+          |글쓰기
+
+    div(id=container)
+      table(style={width : 300})
+        tr
+          td 번호
+          td 글 내용
+          td 글쓴이
+          td 삭제
+        -for(var i=0 ; i < posts.length; i++)
+          tr
+            td=posts[i].post_no
+            td=posts[i].post_content
+            td=posts[i].name
+            td
+              a(href='/delete/'+posts[i].post_no) x
